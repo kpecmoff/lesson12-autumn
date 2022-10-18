@@ -1,0 +1,159 @@
+
+/*
+Різне CSS позиціонування дуже часто 
+використовується при верстці сучасних макетів 
+і відкриває для нас нові цікаві можливості 
+розташування елементів у потоці. 
+Але треба бути обережними та вміти поводитися 
+з цими можливостями грамотно. 
+Розглянемо такі CSS властивості позиціонування як 
+position,
+top,
+left,
+right,
+bottom та z-index.
+А також їх значення.
+
+
+top,
+left,
+right,
+bottom та z-index. - працюють тільки зі значеннями position
+відмінним від static
+
+static - (за замовченням) статичне позиціонування
+
+relative - відносне позиціонування. 
+Об'єкт позіціонується відносно свого поточного місця положення.
+(відносно свого положення в коді)
+
+absolute - абсолютне (безумовне) позиціонування.
+1) Разом з position: absolute; обов'язково використовуйте 
+властивості для позіціанування (left, top, right, bottom)
+2) Об'єкт позіціонується відносно першого батьківського елементу, 
+ position якого відмінний від static.
+3) Об'єкт втрачає свою блочну сутність. Також втрачає своє положення в коді, 
+та простір який він займав
+
+fixed - фіксоване позіціанування
+1) Разом з position: fixed;
+обов'язково використовуйте 
+властивості для позіціанування (left, top, right, bottom)
+2) Об'єкт втрачає свою блочну сутність. 
+Також втрачає своє положення в коді, та простір який він займав
+3) Завжди позіціонується відносно вікна браузера.
+4) Не приймає участі у скролі.
+
+sticky - Це гібридне поєднання значень static та fixed. 
+Спочатку елемент веде себе як static але після того 
+як скролл доходить до його кордону він стає 
+fixed та прилипає до зазначеної позиції top або bottom.
+!!! Не працює, якщо у батькіских об'єктах присутній 
+overflow: hidden;
+
+z-index - управляє положенням об'єкту по осі Z
+auto - ближчим буде об'єкт який нижче по коду
+
+*/
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Regular.woff2") format("woff2"), url("../fonts/Lato-Regular.woff") format("woff");
+	font-display: swap;
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+font-family: "Lato";
+	src: url("../fonts/Lato-Bold.woff2") format("woff2"), url("../fonts/Lato-Bold.woff") format("woff");
+	font-display: swap;
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Black.woff2") format("woff2"), url("../fonts/Lato-Black.woff") format("woff");
+	font-display: swap;
+	font-weight: 900;
+	font-style: normal;
+}
+body{
+	font-family: "Lato";
+	font-size: 16px;
+}
+
+.wrapper {
+	overflow: hidden;
+	min-height: 100%;
+	position: relative;
+}
+.header {
+	min-height: 100px;
+	background: #ADD8E6;
+	position: relative;
+}
+.header__link {
+	position: absolute;
+	left: 50%;
+	top: 30px;
+	display: inline-block;
+	padding: 10px;
+	background: #800000;
+	color: #ffffff;
+	font-weight: 900;
+	font-size: 25px;
+	text-transform: uppercase;
+	border-radius: 20px 5px 20px 5px;
+	box-shadow: 1px 1px 8px 6px #ffff;
+}
+.header__link:hover {
+	color: #800000;
+	background: #ffffff;
+	box-shadow: 1px 1px 8px 3px #000;
+}
+.header__link::after {
+	content:"";
+	position: absolute;
+	top: 35px;
+	left: 10px;
+	width: 13px;
+	height: 2px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.header__link:hover::after{
+	background-color: #800000;
+	width: 60px;
+	transform: translateX(13px);
+	transition: all 0.3s ease 0s;
+	border-radius: 5px;
+}
+.header__link:active {
+	background: #800000;
+	color: #ffffff;
+	box-shadow: none;
+}
+
+.header__title {
+}
+.main {
+	position: relative;
+	min-height: 200px;
+	background: url("../img/main/road.jpg") 0 0/100% 100%  no-repeat;
+}
+
+.main__image img {
+	padding: 5px;
+	max-width: 500px;
+	position: absolute;
+	left: 1200px;
+}
+.main__image img:active {
+	left: -1200px;
+	transform: translateX(600px);
+	transition: all 3s ease 0s;
+}
+
+.footer {
+	min-height: 50px;
+	background: #696969;
+}
